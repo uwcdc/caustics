@@ -32,16 +32,6 @@ class Multiplane(ThickLens):
         List of thin lenses.
     """
 
-    _meta_params = {
-        **ThickLens._meta_params,
-        **{
-            "lenses": {
-                "default": [],
-                "description": "List of thin lenses.",
-            }
-        },
-    }
-
     def __init__(
         self, cosmology: Cosmology, lenses: list[ThinLens], name: Optional[str] = None
     ):
