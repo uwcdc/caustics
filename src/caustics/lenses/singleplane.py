@@ -26,6 +26,16 @@ class SinglePlane(ThinLens):
         A list of ThinLens objects that are being combined into a single lensing plane.
     """
 
+    _meta_params = {
+        **ThinLens._meta_params,
+        **{
+            "lenses": {
+                "default": [],
+                "description": "A list of ThinLens objects that are being combined into a single lensing plane.",
+            },
+        },
+    }
+
     def __init__(
         self,
         cosmology: Cosmology,
