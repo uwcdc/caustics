@@ -74,6 +74,45 @@ class Lens_Source(Simulator):
 
     """  # noqa: E501
 
+    _meta_params = {
+        "lens": {
+            "default": None,
+            "description": "caustics lens mass model object",
+        },
+        "source": {
+            "default": None,
+            "description": "caustics light object which defines the background source",
+        },
+        "pixelscale": {
+            "default": None,
+            "description": "pixelscale of the sampling grid.",
+        },
+        "pixels_x": {
+            "default": None,
+            "description": "number of pixels on the x-axis for the sampling grid",
+        },
+        "lens_light": {
+            "default": None,
+            "description": "caustics light object which defines the lensing object's light",
+        },
+        "psf": {
+            "default": None,
+            "description": "An image to convolve with the scene. Note that if ``upsample_factor > 1`` the psf must also be at the higher resolution.",
+        },
+        "pixels_y": {
+            "default": None,
+            "description": "number of pixels on the y-axis for the sampling grid. If left as ``None`` then this will simply be equal to ``gridx``",
+        },
+        "upsample_factor": {
+            "default": 1,
+            "description": "Amount of upsampling to model the image. For example ``upsample_factor = 2`` indicates that the image will be sampled at double the resolution then summed back to the original resolution (given by pixelscale and gridx/y).",
+        },
+        "psf_pad": {
+            "default": True,
+            "description": "If convolving the PSF it is important to sample the model in a larger FOV equal to half the PSF size in order to account for light that scatters from outside the requested FOV inwards. Internally this padding will be added before sampling, then cropped off before returning the final image to the user.",
+        },
+    }
+
     def __init__(
         self,
         lens,
